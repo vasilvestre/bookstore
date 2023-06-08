@@ -64,13 +64,9 @@ class ReviewTest extends AbstractTest
         $this->assertJsonContains(['hydra:totalItems' => 50]);
     }
 
-    public function setUp(): void
-    {
-        DefaultReviewsStory::load();
-    }
-
     public function testAuthorGetReviewsStory(): void
     {
+        DefaultReviewsStory::load();
         $token = $this->getToken(['email' => UserFactory::random()->getEmail(), 'password' => 'password']);
         static::createClientWithCredentials($token)->request('GET',
             sprintf(
